@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings
+	xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+	version="1.0">
+	<mapped-superclass
+		class="es.mdef.scheduliolib.UsuarioImpl" access="FIELD">
+		<attributes>
+			<basic name="nombreDelCliente" optional="false" />
+			<basic name="apellidosDelCliente" optional="false" />
+			<basic name="telefonoDelCliente" optional="false" />
+			<basic name="emailDelCliente" optional="false" />
+			<one-to-many
+				name="citas"
+				mapped-by="usuario" 
+				target-entity="es.mdef.schedulio.entidades.CitaConId">
+			</one-to-many>
+		</attributes>
+	</mapped-superclass>
+</entity-mappings>
