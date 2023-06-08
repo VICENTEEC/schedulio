@@ -1,5 +1,6 @@
 package es.mdef.schedulio.REST;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -19,6 +20,8 @@ import es.mdef.schedulio.entidades.RecursoConId;
 import es.mdef.schedulio.entidades.ServicioConId;
 import es.mdef.schedulio.repositorios.RecursoRepositorio;
 import es.mdef.schedulio.repositorios.ServicioRepositorio;
+import es.mdef.scheduliolib.Recurso;
+import es.mdef.scheduliolib.Servicio;
 
 //@CrossOrigin(origins = "http://localhost:5173")
 @RestController
@@ -27,13 +30,15 @@ public class ServicioController {
 	private final ServicioRepositorio repositorio;
 	private final ServicioAssembler assembler;
 	private final ServicioListaAssembler listaAssembler;
+	private final RecursoListaAssembler recursoListaAssembler;
 	private final RecursoRepositorio recursoRepositorio;
 	private final Logger log;
 
-	public ServicioController(ServicioRepositorio repositorio, ServicioAssembler assembler, ServicioListaAssembler listaAssembler, RecursoRepositorio recursoRepositorio) {
+	public ServicioController(ServicioRepositorio repositorio, ServicioAssembler assembler, ServicioListaAssembler listaAssembler, RecursoListaAssembler recursoListaAssembler, RecursoRepositorio recursoRepositorio) {
 		this.repositorio = repositorio;
 		this.assembler = assembler;
 		this.listaAssembler = listaAssembler;
+		this.recursoListaAssembler = recursoListaAssembler;
 		this.recursoRepositorio = recursoRepositorio;
 		log = SchedulioApplication.log;
 	}
@@ -50,6 +55,21 @@ public class ServicioController {
 	public CollectionModel<ServicioListaModel> all() {
 		log.info("Recuperada lista de servicios");
 		return listaAssembler.toCollection(repositorio.findAll());
+	}
+	
+	@GetMapping("{id}/recursos")
+	public CollectionModel<RecursoListaModel> recursosServicios(@PathVariable Long id) {
+		List<Recurso> recursos = repositorio.findById(id)
+				.orElseThrow(() -> new RegisterNotFoundException(id, "servicio"))
+				.getRecursos();
+		
+		List<RecursoConId> recursosConId = new ArrayList<>();
+		for (Recurso rec : recursos)
+		{
+			recursosConId.add((RecursoConId) rec);
+		}
+		
+		return recursoListaAssembler.toCollection(recursosConId);
 	}
 	
 //	@GetMapping("{id}/citas")
