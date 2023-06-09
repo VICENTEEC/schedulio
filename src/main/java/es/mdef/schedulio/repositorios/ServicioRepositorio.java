@@ -6,4 +6,6 @@ import es.mdef.schedulio.entidades.ServicioConId;
 
 public interface ServicioRepositorio extends JpaRepository<ServicioConId, Long>{
 
+	ServicioConId findFirstByNombre(String nombre);
+
 }
