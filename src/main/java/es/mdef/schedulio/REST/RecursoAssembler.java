@@ -15,7 +15,7 @@ import es.mdef.schedulio.entidades.SalaConId;
 
 
 @Component
-public class RecursoAssembler implements RepresentationModelAssembler<RecursoConId, RecursoModel>{
+public class RecursoAssembler implements RepresentationModelAssembler<RecursoConId, RecursoModel> {
 	
 	public RecursoModel toModel(RecursoConId entity) {
 		RecursoModel model = new RecursoModel();
@@ -40,7 +40,7 @@ public class RecursoAssembler implements RepresentationModelAssembler<RecursoCon
 		model.setNombre(entity.getNombre());
 		model.add(
 				linkTo(methodOn(RecursoController.class).one(entity.getId())).withSelfRel(),
-	            linkTo(methodOn(RecursoController.class).serviciosRecurso(entity.getId())).withRel("serviciosDesdeRecursoAssem")
+	            linkTo(methodOn(RecursoController.class).serviciosRecurso(entity.getId())).withRel("servicios")
 				);
 		return model;
 	}

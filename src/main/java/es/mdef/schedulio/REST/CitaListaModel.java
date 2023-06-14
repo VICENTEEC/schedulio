@@ -9,7 +9,7 @@ import org.springframework.hateoas.server.core.Relation;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Relation(collectionRelation = "citas")
-public class CitaListaModel extends RepresentationModel<CitaListaModel>{
+public class CitaListaModel extends RepresentationModel<CitaListaModel> {
 	private String estado;
 	
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
@@ -60,5 +60,4 @@ public class CitaListaModel extends RepresentationModel<CitaListaModel>{
 	public void setServicioModel(ServicioModel servicioModel) {
 		this.servicioModel = servicioModel;
 	}
-	
 }

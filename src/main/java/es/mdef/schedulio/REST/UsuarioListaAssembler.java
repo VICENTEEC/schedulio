@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import es.mdef.schedulio.entidades.UsuarioConId;
 
 @Component
-public class UsuarioListaAssembler implements RepresentationModelAssembler<UsuarioConId, UsuarioListaModel>{
+public class UsuarioListaAssembler implements RepresentationModelAssembler<UsuarioConId, UsuarioListaModel> {
 
 	@Override
 	public UsuarioListaModel toModel(UsuarioConId entity) {

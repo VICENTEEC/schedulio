@@ -13,7 +13,7 @@ import es.mdef.schedulio.entidades.ServicioConId;
 import es.mdef.schedulio.entidades.UsuarioConId;
 
 @Relation(itemRelation="cita")
-public class CitaModel extends RepresentationModel<CitaModel>{
+public class CitaModel extends RepresentationModel<CitaModel> {
 
 	private String estado;
 	
@@ -67,6 +67,5 @@ public class CitaModel extends RepresentationModel<CitaModel>{
 
 	public void setServicioConId(ServicioConId servicioConId) {
 		this.servicioConId = servicioConId;
-	}
-    
+	}   
 }

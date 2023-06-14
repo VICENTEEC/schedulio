@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.springframework.hateoas.CollectionModel;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,10 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import es.mdef.schedulio.SchedulioApplication;
 import es.mdef.schedulio.entidades.RecursoConId;
 import es.mdef.schedulio.entidades.ServicioConId;
-import es.mdef.schedulio.repositorios.RecursoRepositorio;
 import es.mdef.schedulio.repositorios.ServicioRepositorio;
 import es.mdef.scheduliolib.Recurso;
-import es.mdef.scheduliolib.Servicio;
 
 //@CrossOrigin(origins = "http://localhost:5173")
 @RestController
@@ -31,15 +28,13 @@ public class ServicioController {
 	private final ServicioAssembler assembler;
 	private final ServicioListaAssembler listaAssembler;
 	private final RecursoListaAssembler recursoListaAssembler;
-	private final RecursoRepositorio recursoRepositorio;
 	private final Logger log;
 
-	public ServicioController(ServicioRepositorio repositorio, ServicioAssembler assembler, ServicioListaAssembler listaAssembler, RecursoListaAssembler recursoListaAssembler, RecursoRepositorio recursoRepositorio) {
+	public ServicioController(ServicioRepositorio repositorio, ServicioAssembler assembler, ServicioListaAssembler listaAssembler, RecursoListaAssembler recursoListaAssembler) {
 		this.repositorio = repositorio;
 		this.assembler = assembler;
 		this.listaAssembler = listaAssembler;
 		this.recursoListaAssembler = recursoListaAssembler;
-		this.recursoRepositorio = recursoRepositorio;
 		log = SchedulioApplication.log;
 	}
 	
@@ -72,17 +67,6 @@ public class ServicioController {
 		return recursoListaAssembler.toCollection(recursosConId);
 	}
 	
-//	@GetMapping("{id}/citas")
-//	public CollectionModel<CitaListaModel> citasServicio(@PathVariable Long id) {
-//		List<CitaConId> citas = repositorio.findById(id)
-//				.orElseThrow(() -> new RegisterNotFoundException(id, "servicio"))
-//				.getCitas();
-//		return CollectionModel.of(
-//				citas.stream().map(cita -> citaListaAssembler.toModel(cita)).collect(Collectors.toList()),
-//				linkTo(methodOn(ServicioController.class).one(id)).slash("citas").withSelfRel()
-//				);
-//	}
-	
 	@PostMapping
 	public ServicioModel add(@RequestBody ServicioModel model) {
 		ServicioConId servicioConId = repositorio.save(assembler.toEntity(model));
@@ -107,6 +91,5 @@ public class ServicioController {
 	public void delete(@PathVariable Long id) {
 		log.info("Borrado servicio " + id);
 		repositorio.deleteById(id);
-	}
-	
+	}	
 }

@@ -10,7 +10,7 @@ import es.mdef.scheduliolib.RecursoImpl.Tipo;
 import es.mdef.schedulio.entidades.ServicioConId;
 
 @Relation(itemRelation="recurso")
-public class RecursoModel extends RepresentationModel<RecursoModel>{
+public class RecursoModel extends RepresentationModel<RecursoModel> {
 	private Tipo tipo;
 	private String nombre;
 	private String nombreMaterial;
@@ -18,12 +18,12 @@ public class RecursoModel extends RepresentationModel<RecursoModel>{
 	private String telefono;
 	private String apellidos;
 	private String nombreSala;
-	private List<ServicioConId> serviciosConIds;
-	
+	private List<ServicioConId> serviciosConIds;	
 	
 	public Tipo getTipo() {
 		return tipo;
 	}
+	
 	public void setTipo(String tipo) {
 	    this.tipo = Tipo.valueOf(tipo);
 	}
@@ -81,6 +81,4 @@ public class RecursoModel extends RepresentationModel<RecursoModel>{
 	public void setServiciosConIds(List<ServicioConId> serviciosConIds) {
 		this.serviciosConIds = serviciosConIds;
 	}
-
-
 }

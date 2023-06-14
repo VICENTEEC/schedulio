@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import es.mdef.schedulio.entidades.UsuarioConId;
 
 @Component
-public class UsuarioAssembler implements RepresentationModelAssembler<UsuarioConId, UsuarioModel>{
+public class UsuarioAssembler implements RepresentationModelAssembler<UsuarioConId, UsuarioModel> {
 
 	@Override
 	public UsuarioModel toModel(UsuarioConId entity) {

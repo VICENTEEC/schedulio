@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import es.mdef.schedulio.entidades.ServicioConId;
 
 @Component
-public class ServicioAssembler implements RepresentationModelAssembler<ServicioConId, ServicioModel>{
+public class ServicioAssembler implements RepresentationModelAssembler<ServicioConId, ServicioModel> {
 
 	@Override
 	public ServicioModel toModel(ServicioConId entity) {
@@ -19,7 +19,6 @@ public class ServicioAssembler implements RepresentationModelAssembler<ServicioC
 		model.setPrecio(entity.getPrecio());
 		model.add(
 				linkTo(methodOn(ServicioController.class).one(entity.getId())).withSelfRel()
-			//	linkTo(methodOn(ServicioController.class).citasServicio(entity.getId())).withRel("citasdesdeServicioAssembler")
 				);
 		return model;
 	}

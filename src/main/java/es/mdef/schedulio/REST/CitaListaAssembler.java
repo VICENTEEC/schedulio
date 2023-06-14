@@ -15,7 +15,7 @@ import es.mdef.schedulio.entidades.ServicioConId;
 import es.mdef.schedulio.entidades.UsuarioConId;
 
 @Component
-public class CitaListaAssembler implements RepresentationModelAssembler<CitaConId, CitaListaModel>{
+public class CitaListaAssembler implements RepresentationModelAssembler<CitaConId, CitaListaModel> {
 	private final UsuarioAssembler usuarioAssembler;
 	private final ServicioAssembler servicioAssembler;
 	
@@ -34,8 +34,8 @@ public class CitaListaAssembler implements RepresentationModelAssembler<CitaConI
 		model.setServicioModel(servicioAssembler.toModel((ServicioConId) entity.getServicio()));
 		model.add(
 				linkTo(methodOn(CitaController.class).one(entity.getId())).withSelfRel(),
-				linkTo(methodOn(UsuarioController.class).one(((UsuarioConId) entity.getUsuario()).getId())).withRel("usuariodesdeCitaListAssembler"),
-				linkTo(methodOn(ServicioController.class).one(((ServicioConId) entity.getServicio()).getId())).withRel("ServiciodesdeCitaListAssembler")
+				linkTo(methodOn(UsuarioController.class).one(((UsuarioConId) entity.getUsuario()).getId())).withRel("usuario"),
+				linkTo(methodOn(ServicioController.class).one(((ServicioConId) entity.getServicio()).getId())).withRel("servicio")
 				);
 		return model;
 	}

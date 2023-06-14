@@ -17,7 +17,7 @@ import es.mdef.schedulio.entidades.SalaConId;
 
 
 @Component
-public class RecursoListaAssembler implements RepresentationModelAssembler<RecursoConId, RecursoListaModel>{
+public class RecursoListaAssembler implements RepresentationModelAssembler<RecursoConId, RecursoListaModel> {
 
 	@Override
 	public RecursoListaModel toModel(RecursoConId entity) {

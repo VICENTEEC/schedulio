@@ -1,7 +1,6 @@
 package es.mdef.schedulio.REST;
 
 import org.springframework.hateoas.CollectionModel;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +21,6 @@ import es.mdef.schedulio.entidades.CitaConId;
 import es.mdef.schedulio.entidades.UsuarioConId;
 import es.mdef.schedulio.repositorios.UsuarioRepositorio;
 
-//@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
@@ -93,6 +91,5 @@ public class UsuarioController {
 	public void delete(@PathVariable Long id) {
 		log.info("Borrado usuario " + id);
 		repositorio.deleteById(id);
-	}
-	
+	}	
 }
